@@ -1,0 +1,49 @@
+How to run:
+1. python processImage.py, first to process Picture
+2. g++ -std=c++11 lzw.cpp -o lzw, to compile LZW algorithm on Integer vector
+3. python preprocessImage.py, second to reconstruct picture in .tif
+4. python preprocessImage.py , third to display .tif file
+
+#####################################################################################################################
+Displaying or storing an image in .tif format typically uses less memory than storing the same image data in a .txt file because of format-specific storage optimizations. Here’s why:
+
+1. Efficient Data Representation
+In .tif:
+Pixels are stored as binary data, directly encoding pixel values in a compact, raw format.
+No extra characters, delimiters, or textual representations are used.
+If compression is enabled in .tif, the file can use algorithms like LZW or ZIP to further reduce size.
+
+In .txt:
+Each pixel value is stored as human-readable text.
+For example, the number 255 is stored as 3 characters ('2', '5', '5') plus a delimiter (e.g., a comma or newline). This significantly increases the size.
+
+2. Overhead in Text Files
+Text files introduce additional overhead:
+Delimiters: Commas or spaces between numbers, and newline characters add to the file size.
+ASCII Encoding: Text files store characters in an ASCII or Unicode representation, which is less memory-efficient than binary storage.
+
+3. Compression in .tif
+TIFF files can be saved with lossless compression algorithms (e.g., LZW, ZIP). These reduce file size without losing any pixel data.
+On the other hand, .txt files typically do not use compression unless explicitly compressed with a tool like gzip.
+
+4. Data Type Size
+In .tif:
+Pixels are stored as uint8 (1 byte per channel per pixel), making the size minimal.
+
+In .txt:
+Each number is stored as multiple characters in text form, and each character can take up 1-4 bytes depending on encoding (e.g., ASCII or UTF-8).
+
+For example:
+Storing 255 as binary: 1 byte.
+Storing 255 as text: 3 bytes (plus delimiter).
+
+Example: Suppose you have a small 2x2 RGB image:
+
+Pixel Data (RGB)	In .tif (Binary)	In .txt (Text)
+(255, 0, 0)	        3 bytes	            "255,0,0," = 9 bytes
+(0, 255, 0)	        3 bytes	            "0,255,0," = 9 bytes
+(0, 0, 255)	        3 bytes	            "0,0,255," = 9 bytes
+(255, 255, 255)	    3 bytes	            "255,255,255," = 13 bytes
+
+Total in .tif: 12 bytes.
+Total in .txt: 40 bytes.
