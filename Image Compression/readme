@@ -44,7 +44,7 @@ Pixel Data (RGB)	In .tif (Binary)	In .txt (Text)
 (255, 0, 0)	        3 bytes	            "255,0,0," = 9 bytes
 (0, 255, 0)	        3 bytes	            "0,255,0," = 9 bytes
 (0, 0, 255)	        3 bytes	            "0,0,255," = 9 bytes
-(255, 255, 255)     3 bytes	            "255,255,255," = 13 bytes
+(255, 255, 255)         3 bytes	            "255,255,255," = 13 bytes
 
 Total in .tif: 12 bytes.
 Total in .txt: 40 bytes.
