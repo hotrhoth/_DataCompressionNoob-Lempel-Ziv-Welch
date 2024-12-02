@@ -5,7 +5,8 @@ How to run:
 4. python preprocessImage.py , third to display .tif file
 
 #####################################################################################################################
-Displaying or storing an image in .tif format typically uses less memory than storing the same image data in a .txt file because of format-specific storage optimizations. Here’s why:
+Displaying or storing an image in .tif format typically uses less memory than storing the same image data in a .txt 
+file because of format-specific storage optimizations. Here’s why:
 
 1. Efficient Data Representation
 In .tif:
@@ -43,7 +44,7 @@ Pixel Data (RGB)	In .tif (Binary)	In .txt (Text)
 (255, 0, 0)	        3 bytes	            "255,0,0," = 9 bytes
 (0, 255, 0)	        3 bytes	            "0,255,0," = 9 bytes
 (0, 0, 255)	        3 bytes	            "0,0,255," = 9 bytes
-(255, 255, 255)	    3 bytes	            "255,255,255," = 13 bytes
+(255, 255, 255)     3 bytes	            "255,255,255," = 13 bytes
 
 Total in .tif: 12 bytes.
 Total in .txt: 40 bytes.
