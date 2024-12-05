@@ -3,7 +3,12 @@ import tkinter as tk
 from tkinter import filedialog, messagebox
 
 # Load the shared library (Make sure the path to the .so or .dll file is correct)
-lzw_lib = ctypes.CDLL('./liblzw.so')
+try:
+    lzw_lib = ctypes.CDLL('../LZW Encoding & Decoding/liblzw.dll')
+except OSError as e:
+    messagebox.showerror("Error", f"Failed to load the LZW library: {str(e)}")
+    exit(1)
+
 
 # Define the argument types for the compress and decompress functions
 lzw_lib.compress.argtypes = [ctypes.c_char_p, ctypes.c_char_p]

@@ -3,6 +3,8 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <limits>
+#include <cstdint>
 
 using namespace std;
 using CodeType = uint16_t;
