@@ -20,7 +20,7 @@ enum class Mode {
     Decompress
 };
 
-void print_usage(const string &s="", bool su=true) {
+void print_usage(const string &s = "", bool su = true) {
     if(!s.empty()) cout << "\nERROR: " << s << "\n";
     if(su) {
         cout << "\nUsage:\n";
@@ -62,14 +62,20 @@ void compress(istream &is, ostream &os) {
             const CodeType dictionary_size = dictionary.size();
 
             dictionary[s] = dictionary_size;
+            string s1(s.begin(), s.end());
+            std::cout << s1 << " " << dictionary_size << " -> ";
             s.pop_back();
             os.write(reinterpret_cast<const char*>(&dictionary.at(s)), sizeof(CodeType));
+            string s2(s.begin(), s.end());
+            std::cout << s2 << "\n";
             s = {c};
         }
     }
 
     if(!s.empty()) 
         os.write(reinterpret_cast<const char*>(&dictionary.at(s)), sizeof(CodeType));
+        string s2(s.begin(), s.end());
+        std::cout << s2 << "\n";
 
 }
 
@@ -104,7 +110,10 @@ void decompress(istream &is, ostream &os) {
             dictionary.push_back(s + dictionary.at(k).front());
         
         os.write(&dictionary.at(k).front(), dictionary.at(k).size());
+        std::cout << k << " ";
         s = dictionary.at(k);
+        string s2(s.begin(), s.end());
+        std::cout << s2 << "\n";
     }
 
     if (!is.eof() || is.gcount() != 0)
