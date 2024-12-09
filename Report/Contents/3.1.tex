@@ -1,0 +1,11 @@
+Lempel-Ziv Welch coding makes use of dictionaries to store substrings of characters that have occured before in the text, thus "memorizing" them. When a repeating substring is recognized, it uses the indices of the place in the dictionary where the required substring is stored and compresses the text doing so. This method thus relies heavily on repetition. 
+
+\vspace{10pt}
+A further property is that it makes use of the "greedy" parsing algorithm, where the text is looped over exactly once. During this parsing, the longest recognized substring is saved to the result and the combination of the current substring and the next occurring character is added to the dictionary.
+
+\vspace{10pt}
+Since the dynamic dictionary is created by both compressor and decompressor with small dictionary of all possible single-character strings like ASCII characters, there is no dictionary transmission which reduces transmission overhead. 
+
+\vspace{10pt}
+Although this algorithm can achieve great compression, it does not attempt to optimally select strings by making use of probability estimation. Therefore, its effectiveness is less than optimal, but creates great usability by the simplicity of the algorithm.
+

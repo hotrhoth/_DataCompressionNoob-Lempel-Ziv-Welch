@@ -1,0 +1,52 @@
+% https://courses.cs.duke.edu/spring03/cps296.5/papers/welch_1984_technique_for.pdf
+The effectiveness of compression is expressed as a ratio relating to the number of bits needed to express the message before and after compression. The compression ratio used here will be the uncompressed bit count divided by the compressed bit count. The resulting value, usually greater than one, indicates the factor of increased data density achieved by compression. 
+For example, compression that serves to eliminate half the bits of a particular message is presented as fulfilling a 2.0 compression ratio, indicating that two-to-one compression has been achieved.
+
+\vspace{10pt}
+The compression ratios presented in the table below are derived from the original article "A Technique for High-Performance Data Compression"\cite{doc2} by Terry Welch. These results, obtained through software simulation, are provided in Table \ref{tab:compression_results} for various data types.
+
+\begin{table}[h!]
+\caption{Compression results for a variety of data types.}
+\centering
+\begin{tabular}{|l|c|}
+\hline
+\textbf{Data Type}               & \textbf{Compression Ratio} \\ \hline
+English Text                     & 1.8                        \\ \hline
+Cobol Files                      & 2 to 6                     \\ \hline
+Floating Point Arrays            & 1.0                        \\ \hline
+Formatted Scientific Data        & 2.1                        \\ \hline
+System Log Data                  & 2.6                        \\ \hline
+Program Source Code              & 2.3                        \\ \hline
+Object Code                      & 1.5                        \\ \hline
+\end{tabular}
+\label{tab:compression_results}
+\end{table}
+
+
+% Cobol Files, Formatted Scientific Data, System Log Data, Program Source Code
+
+\textbf{English text.} Text samples for compression were obtained from ASCII word processing files in a technical environment. Results were reasonably consistent for simple text, at a compression ratio of 1.8. Surprisingly, long individual documents did not compress better than groups of short documents, indicating that other factors (such as formatting or structural information) might be contributing more significantly to redundancy, rather than the content itself.
+
+\vspace{10pt}
+
+\textbf{Cobol Files.} A significant number of large Cobol files from several types of applications were compressed, producing widely variable results. Compression depends on record format, homogeneity across data records, and the extent of integer usage. These were eight-bit ASCII files, so the integer data would compress very well. A side experiment showed that one-third to two-thirds of the space in some of these files appeared as strings of repeated identical characters, indicating a high fraction of blank space (fixed-width record format).
+
+\vspace{10pt}
+
+\textbf{Floating Point Arrays.} Arrays of floating point numbers look pretty much like white noise and so they compress rather poorly. The fraction part is a nearly random bit pattern since there are no redundancy savings to offset the overhead.
+
+\vspace{10pt}
+
+\textbf{Formatted Scientific Data.} Most data used by Fortran programs tended to compress about 50 percent. This data included input data, primarily integers. It also included print files, which were ASCII-coded.
+
+\vspace{10pt}
+
+\textbf{System Log Data.} Information describing past system activity, such as job start and stop times, is mostly formatted integers and is therefore reasonably compressible. This log data is used for recovery and constitutes perhaps 10 percent of the data stored on backup/recovery tapes. It tends to be in a tightly packed, fixed-length format, so the compression achieved is due to null fields and repetition in the data values.
+
+
+\vspace{10pt}
+
+\textbf{Program Source Code.} Source code can be compressed by a factor of better than two. It can be compressed better than text because words are frequently repeated and blank spaces are introduced by the source code format. Highly structured programming yields source code with greater compressibility than the average 2.3 factor cited here.
+
+\vspace{10pt}
+\textbf{Object Code.} Object code consists of arbitrary bit patterns and does not compress well. Uneven usage of opcodes and incomplete utilization of displacement fields would account for most of the compression achieved.

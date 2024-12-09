@@ -1,0 +1,32 @@
+LZ77, LZ78, and LZW are foundational compression algorithms that differ in their approach to handling redundancy in data. 
+
+\vspace{10pt}
+
+LZ77 operates using a sliding window, where it searches for the longest match between the look-ahead buffer (unprocessed data) and the sliding window (recently processed data). It outputs a triplet \textit{(offset, length, next symbol)}, with the offset indicating the starting position of the match, the length specifying the number of matched characters, and the next symbol representing the first unmatched character. This makes LZ77 effective for compressing data with localized repetition, but its performance diminishes when dealing with long-range patterns or globally repetitive data.
+
+\vspace{10pt}
+
+In contrast, LZ78 constructs an explicit and growing dictionary to store phrases dynamically as it processes the input. At each step, it outputs a pair \textit{(index, next symbol)}, where the index refers to the dictionary entry of the longest matching phrase, and the next symbol is the character that follows the match. Unlike LZ77, LZ78 does not limit itself to a sliding window, enabling it to capture patterns that recur over larger ranges in the input. However, the need to transmit the raw next symbol alongside the dictionary index can reduce compression efficiency for highly repetitive data.
+
+\vspace{10pt}
+
+LZW, an enhancement of LZ78, pre-initializes the dictionary with all single-character symbols, eliminating the need to transmit raw symbols in the output. This allows LZW to rely entirely on dictionary indices for encoding, which makes it more efficient than LZ78 for repetitive data. As the compression progresses, LZW extends the dictionary with new phrases formed from previously matched sequences. While this approach improves compression ratios for data with significant redundancy, it also introduces complexity in managing and synchronizing the dictionary between the encoder and decoder.
+
+\vspace{10pt}
+
+In terms of practical applications, LZ77 forms the basis of the widely used DEFLATE algorithm, which powers ZIP and PNG formats, with variants like LZSS optimizing its performance. LZ78 serves primarily as a theoretical foundation, influencing the development of algorithms like LZW, which gained widespread adoption in formats such as GIF. Each algorithm has its strengths: LZ77 excels with localized patterns, LZ78 handles long-range repetitions effectively, and LZW achieves high compression efficiency by using only dictionary indices. These differences make them suitable for various types of data and applications. 
+
+\begin{table}[h!]
+\caption{Comparison of LZ77, LZ78, and LZW.}
+\centering
+\begin{tabular}{|p{2.4cm}|p{4cm}|p{3.6cm}|p{4cm}|}
+\hline
+\textbf{Feature}            & \textbf{LZ77}                  & \textbf{LZ78}                  & \textbf{LZW}                  \\ \hline
+\textbf{Dictionary Type}    & Sliding window                & Incremental, explicit trie     & Pre-initialized dictionary    \\ \hline
+\textbf{Output}             & \((\text{offset, length, symbol})\) & \((\text{index, symbol})\)     & \((\text{index})\)            \\ \hline
+\textbf{Strengths}          & Local repetition, flexibility & Long-range patterns            & High compression ratio        \\ \hline
+\textbf{Weaknesses}         & Limited range                & Includes raw symbols           & Complex initialization        \\ \hline
+\textbf{Applications}       & DEFLATE, ZIP, PNG            & Basis for LZW                  & GIF, legacy systems           \\ \hline
+\end{tabular}
+\label{tab:lz_comparison}
+\end{table}

@@ -1,0 +1,58 @@
+% LZW Decompression Process
+\begin{algorithm}[H]
+	\caption{LZW Decompression Process} 
+	\begin{algorithmic}[1]
+        \State Initialize the dictionary with all possible single-length characters.
+        \State $\textbf{OLD}$ = first input code.
+        \State Output translation of $\textbf{OLD}$ (decoded sequence).
+        
+        \While{not at the end of the encoded sequence}
+            \State $\textbf{NEW}$ = next input code.
+            \If{$\textbf{NEW}$ exists in the dictionary}
+                \State $S$ = translation of $\textbf{NEW}$.
+            \Else
+                \State $S$ = translation of $ \textbf{OLD}$ + $C$.
+            \EndIf
+            \State Output $S$.
+            \State $C$ = first character of $S$.
+            \State Append translation of $\textbf{OLD}$ + $C$ to the dictionary.
+            \State $\textbf{OLD}$ = $\textbf{NEW}$.
+        \EndWhile
+	\end{algorithmic} 
+\end{algorithm}
+
+\vspace{10pt}
+
+The decompression phase of the LZW algorithm is designed to reverse the compression process, reconstructing the original data from the compressed codes. The decompression algorithm begins with the same initial dictionary used during the compression phase, containing all individual symbols. It then reads the compressed data, consisting of a series of codes referencing sequences in the dictionary.
+
+\vspace{10pt}
+
+As the decompressor processes each code, it retrieves the corresponding sequence from the dictionary and adds it to the output. If the code refers to an existing sequence, the sequence is output directly. If the code refers to a new sequence, the decompressor will add the sequence to the dictionary, ensuring it can be used in subsequent decompression steps.
+
+\vspace{10pt}
+\textcolor{magenta}{\textbf{Example:}} LZW decompression process for the encoded input \textcolor{cyan}{193 194 195 257 195 256}.\\ \\
+\textbf{Initialize:} Dictionary with all possible single-length characters, mapping ASCII character codes, for instance: dictionary[176] = "0", dictionary[193] = "A".
+
+\begin{table}[ht]
+    \caption{Trace of the LZW Algorithm step by step: Decompression process}
+    \centering
+\adjustbox{max width=\textwidth}{
+\begin{tabular}{|c|c|c|c|l|}
+\hline
+\multirow{2}{*}{\textbf{Step}} & \multirow{2}{*}{\textbf{Decoder Output}} & \multicolumn{2}{c|}{\textbf{Dictionary}} & \multirow{2}{*}{\textbf{Explaination}} \\ \cline{3-4}
+& & \textbf{Key} & \textbf{Value} & \\ \hline
+1 &  "A" &   &  &  OLD = 193\\ \hline
+2 &  "B" &  256 & "AB" & NEW = 194, S = "B", C = "B", OLD = 194\\ \hline
+3 &  "C" &  257 & "BC" & NEW = 195, S = "C", C = "C", OLD = 195 \\ \hline
+4 &  "BC" & 258 & "CB" & NEW = 257, S = "BC", C = "B", OLD = 257 \\ \hline
+5 &  "C" &  259 & "BCC" & NEW = 195, S = "C", C = "C", OLD = 195 \\ \hline
+6 &  "AB" &  260 & "CA" & NEW = 256, S = "AB", C = "A", OLD = 256 \\ \hline
+ &   &   &  & end of stream \\ \hline
+\end{tabular}
+}
+
+    \label{tab:lzw_trace_decompress}
+\end{table}
+
+\textbf{Decocoder:} The decompressor output of encoded input is the string reconstructed from binary encoders, such as here: "\textbf{\textcolor{Tue-red}{ABCBCCAB}}".
+

@@ -1,0 +1,96 @@
+\documentclass[12pt, a4paper]{article}
+\input{General/Preamble} % Loads in the preamble 
+\input{General/Settings} % Loads in user defined settings
+
+
+% ============ DOCUMENT ============
+\begin{document}
+\pagenumbering{arabic}
+\setcounter{page}{1} 
+% Inserts the front page
+\input{Contents/0. Frontpage}
+\newpage
+
+% Table of Contents
+\tableofcontents
+\newpage
+
+% need to update after all
+\section{Preface}
+\input{Contents/1}
+\newpage
+
+\section{Introduction}
+\subsection{Historical Background of LZW Compression}
+\input{Contents/2.1}
+\subsection{Applications of LZW Compression}
+\input{Contents/2.2}
+\newpage
+
+\section{Understanding the LZW Compression Algorithm}
+\subsection{Key Concepts and Mechanisms}
+\input{Contents/3.1}
+\subsection{Compression Process with Examples}
+\input{Contents/3.2}
+\subsection{Decompression Process with Examples}
+\input{Contents/3.3}
+\newpage
+
+\section{Performance Analysis of LZW Compression}
+\subsection{Compression Ratios}
+\input{Contents/4.1}
+\subsection{Time Complexity}
+\input{Contents/4.2}
+\newpage
+
+\section{Overview of LZW-Related Algorithms}
+\input{Contents/5}
+\subsection{LZ77}
+\input{Contents/5.1}
+\subsection{LZ78}
+\input{Contents/5.2}
+\subsection{Comparison between LZ77, LZ78, and LZW}
+\input{Contents/5.3}
+\newpage
+
+% \section{Demonstrating Applications of LZW Compression}
+% \subsection{Image Compression}
+% \subsection{GIF Compression}
+% \subsection{File Archiving}
+% \subsection{Other Applications}
+% \newpage
+
+\section{Conclusion}
+\input{Contents/7}
+\newpage
+
+% \cleardoublepage
+\phantomsection
+\bibliographystyle{unsrt}
+% \bibliography{ref/References}
+
+\begin{thebibliography}{7}
+
+\bibitem{doc1}
+Jacob Ziv and Abraham Lempel, "Compression of individual sequences via variable-rate coding", \emph{IEEE Trans. Inf. Theory}, 24(5):530–536, 1978. Available: \url{https://api.semanticscholar.org/CorpusID:9267632}
+
+\bibitem{doc2}
+Terry A. Welch, "A technique for high-performance data compression", \emph{Computer},17(06):8–19, 1984. Available: \url{https://courses.cs.duke.edu/spring03/cps296.5/papers/welch_1984_technique_for.pdf}
+
+\bibitem{doc3}
+Jacob Ziv and Abraham Lempel, "A universal algorithm for sequential data compression", \emph{IEEE Transactions on Information Theory}, 23:337–343, 1977. 
+
+\bibitem{doc4}
+From Wikipedia, the free encyclopedia, "LZ77 and LZ78". Available: \url{https://en.wikipedia.org/wiki/LZ77_and_LZ78}
+
+\bibitem{doc5}
+From stringology.org, Czech Technical University in Prague, "Data Compression - LZ - 78". Available: \url{https://www.stringology.org/DataCompression/lz78/index_en.html}
+
+\end{thebibliography}
+\newpage
+
+\section{Appendices}
+\input{Contents/8}
+
+
+\end{document}
